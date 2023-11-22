@@ -1,3 +1,33 @@
+import { useAuthContext  } from "../context/AuthContext"
+import FirebaseAuth from "../handlers/auth";
+const LogIn = () => {
+  const handleLogin = async () => {
+    try {
+      const user = await FirebaseAuth.signIn();
+      console.log('Logged in user:', user);
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+
+  return (
+    <button type="button" className="btn btn-warning" onClick={handleLogin}>
+      Login
+    </button>
+  );
+};
+
+const LogOut = () => {
+  const { logout, currentUser } = useAuthContext;
+  return(
+   !!currentUser && (
+    <button type="button" className="btn btn-danger" onClick={logout}>
+       Logout
+     </button>
+     )
+  );
+ }
+
 function Navigation() {
   return(
     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -28,7 +58,9 @@ function SearchForm() {
 }
 
 function Dropdown() {
-  return( <ul className="navbar-nav mb-2 mb-lg-0">
+  return( 
+    
+  <ul className="navbar-nav mb-2 mb-lg-0" >
   {" "}
   {/* remove ms-auto */}
   <li className="nav-item dropdown">
@@ -42,16 +74,26 @@ function Dropdown() {
     >
       Login
     </a>
-    <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+    <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{right:0, left: 'auto'}}>
       <li>
         <a className="dropdown-item text-center" href="#">
           Profile
         </a>
       </li>
+      <li><hr className="dropdown divider"/></li> 
+      <li>
+      <div className="d-flex justify-content-center">
+        <LogIn />
+        <LogOut />
+      </div>
+      </li>
     </ul>
   </li>
-</ul>)
+</ul>
+
+)
 }
+
 
 function Navbar() {
     return(
@@ -64,7 +106,7 @@ function Navbar() {
         className="navbar-toggler"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
+        data-bs-target="#nav"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -75,8 +117,10 @@ function Navbar() {
         <Navigation />
         <SearchForm />
         <Dropdown />
+  
       </div>
     </div>
-    </nav>)
+    </nav>
+    )
   }
   export default Navbar

@@ -1,7 +1,8 @@
 import { useContext } from "react"
-import { Context } from "../context"
+import { Context } from "../context/FirestoreContext"
 import Navbar from "./Navbar"
 import UploadForm from "./UploadForm"
+
 
 function Layout({ children }) {
     const { dispatch, state } = useContext(Context)

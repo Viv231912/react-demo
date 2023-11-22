@@ -1,8 +1,12 @@
 import {  useMemo, useContext, useEffect } from "react";
-import Firestore from "../src/handlers/firestore";
-import { Context } from "./context"
+import { Context } from "../src/context/FirestoreContext"
 import Card from "./components/Card";
 import Layout from "./components/Layout";
+// index.js or App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+
 import "./App.css";
 
 

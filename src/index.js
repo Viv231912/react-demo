@@ -3,14 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Provider from './context';
+import Provider from '../src/context/FirestoreContext';
+import AuthProvider from './context/AuthContext';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <AuthProvider>
     <Provider>
       <App />
     </Provider>
+    </AuthProvider>
   </React.StrictMode>
 );
 
