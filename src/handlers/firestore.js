@@ -29,7 +29,7 @@ const Firestore = {
             const randomIndex = Math.floor(Math.random() * 1000000000)
             try {
                 const docRef = doc(db, 'stocks', `${randomIndex}`);
-                await setDoc(docRef , { title: inputs.title, path: inputs.path , createdAt: serverTimestamp() });
+                await setDoc(docRef , { title: inputs.title, path: inputs.path , createdAt: serverTimestamp(), user: inputs.user });
                 resolve('new doc successfully inserted')
             } catch(e) {
             
